@@ -12,7 +12,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require "faker"
+
 # t.string "first_name"
 # t.integer "age"
 # t.string "phone"
@@ -20,18 +20,17 @@ require "faker"
 # t.string "last_name"
 # t.boolean "friend"
 
-Contact.destroy_all
+require "faker"
 
 10.times do
   contact = Contact.create(
-    first_name: Faker::Name.first_name,
+    first_name: Faker::Name.name,
     age: rand(18...65),
     phone: Faker::PhoneNumber.cell_phone,
     email: Faker::Internet.email,
     last_name: Faker::Name.last_name,
     friend: rand(2).odd? ? true : false,
   )
-
   # Has many notes lets make number of notes random for each contact
   num_notes = rand(1..3)
   messages = [
@@ -43,3 +42,5 @@ Contact.destroy_all
     contact.notes.create(body: messages[i])
   end
 end
+
+# generate a random number between 1 - 10 in ruby
